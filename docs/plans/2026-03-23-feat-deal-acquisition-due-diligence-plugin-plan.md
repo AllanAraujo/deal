@@ -276,8 +276,8 @@ When asking web search permission, the prompt includes:
 - [x] Initialize git repository
 - [x] Create `.claude-plugin/plugin.json` manifest (name: `deal`)
 - [x] Create `CLAUDE.md` with plugin development conventions and architectural invariants
-- [ ] **Validate WebSearch in plugin agents** — Build a minimal test agent with `tools: ["WebSearch"]` and confirm it works. If not, document the fallback (orchestrator does web searches inline).
-- [ ] Validate that the `model` field in agent frontmatter is respected by the plugin system
+- [x] **Validate WebSearch in plugin agents** — PASS. Agent with `tools: ["WebSearch"]` successfully returned search results. No fallback needed.
+- [x] Validate that the `model` field in agent frontmatter is respected — PASS. Haiku ~3s vs Opus ~8s, both correct.
 - [x] **`skills/deal-knowledge/SKILL.md`** — Domain knowledge skill (`user-invocable: false`)
   - SDE calculation rules and add-back categories (from Excel template at `templates/SDE calculator command/`)
   - Categories: Net Income, Depreciation & Amortization, Interest, Corporate/LLC Taxes, Owner Benefits
@@ -321,8 +321,8 @@ When asking web search permission, the prompt includes:
 - [ ] `/deal:sde` produces independently verified SDE with discrepancy report
 - [ ] Agent 1 and Agent 2 operate in genuine isolation (separate subagent contexts)
 - [ ] Reconciliation presents actionable side-by-side comparison
-- [ ] WebSearch validation test completed (pass or documented fallback)
-- [ ] `model` field in agent frontmatter validated
+- [x] WebSearch validation test completed — PASS, no fallback needed
+- [x] `model` field in agent frontmatter validated — PASS, respected correctly
 
 #### Phase 2: Due Diligence + Notes
 
