@@ -465,7 +465,7 @@ When asking web search permission, the prompt includes:
 
 **Tasks and deliverables:**
 
-- [ ] **`skills/box/SKILL.md`** — Interactive buyer profile questionnaire
+- [x] **`skills/box/SKILL.md`** — Interactive buyer profile questionnaire
   - `allowed-tools: Read, Write, Grep, Glob`
   - No `context: fork` — runs inline for AskUserQuestion
   - Upward traversal (max 5 levels) to find/create project root `deal-box.md`
@@ -475,7 +475,7 @@ When asking web search permission, the prompt includes:
   - Ensure `.gitignore` exists before writing
   - YAML frontmatter with creation date and last-modified date
   - Deal box schema matches all BizScout DealOS fields (see brainstorm)
-- [ ] **`skills/listing/SKILL.md`** — Listing review orchestrator
+- [x] **`skills/listing/SKILL.md`** — Listing review orchestrator
   - `allowed-tools: Read, Write, Grep, Glob, WebSearch, WebFetch`
   - No `context: fork` — runs inline
   - Input detection: URL (WebFetch), file path (Read), or pasted content (AskUserQuestion with free text)
@@ -489,7 +489,7 @@ When asking web search permission, the prompt includes:
   - Write `listing-review-{slug}.md` to deal folder (create folder if at project root)
   - Handle slug collisions with numeric suffix
   - Ensure `.gitignore` exists before writing
-- [ ] **`skills/calc/SKILL.md`** — Deal calculator orchestrator
+- [x] **`skills/calc/SKILL.md`** — Deal calculator orchestrator
   - `allowed-tools: Read, Write, Grep, Glob`
   - No `context: fork` — runs inline for AskUserQuestion
   - Pre-fill from existing artifacts where possible (reduce questionnaire length):
