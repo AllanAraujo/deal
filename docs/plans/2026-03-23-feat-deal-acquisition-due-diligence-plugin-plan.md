@@ -330,7 +330,7 @@ When asking web search permission, the prompt includes:
 
 **Tasks and deliverables:**
 
-- [ ] **`skills/dd/SKILL.md`** — Due diligence orchestrator
+- [x] **`skills/dd/SKILL.md`** — Due diligence orchestrator
   - `allowed-tools: Read, Write, Edit, Grep, Glob, WebSearch, WebFetch`
   - No `context: fork` — runs inline
   - Phase 1: Material discovery
@@ -355,7 +355,7 @@ When asking web search permission, the prompt includes:
     - Add metadata header (generation date, materials analyzed, agents run)
     - Add confidentiality header: "CONFIDENTIAL — This analysis contains information subject to non-disclosure agreements. Do not share without verifying NDA coverage."
     - Clean up `_dd-working/`
-- [ ] **`agents/financial-analyst.md`** — Financial analysis (P&L + balance sheet + SDE valuation)
+- [x] **`agents/financial-analyst.md`** — Financial analysis (P&L + balance sheet + SDE valuation)
   - Model: sonnet
   - Tools: `["Read", "Write", "Grep", "Glob"]`
   - Reads all financial documents in `financials/`
@@ -372,7 +372,7 @@ When asking web search permission, the prompt includes:
     ## Section 4: SDE Detailed Build-Up
     [if sde-calculator.md available, structured tables per year]
     ```
-- [ ] **`agents/market-researcher.md`** — Industry + community research
+- [x] **`agents/market-researcher.md`** — Industry + community research
   - Model: sonnet
   - Tools: `["WebSearch", "WebFetch"]` — **NO Read, Grep, or Glob**
   - Receives ONLY inline context from orchestrator: business name, industry, location
@@ -390,7 +390,7 @@ When asking web search permission, the prompt includes:
     ### Community Standing
     [Google reviews, Yelp, BBB, social media findings]
     ```
-- [ ] **`agents/listing-reviewer.md`** — Listing + broker document review
+- [x] **`agents/listing-reviewer.md`** — Listing + broker document review
   - Model: sonnet
   - Tools: `["Read", "Write", "Grep", "Glob"]`
   - Reviews both listing content and CIM/broker packages in `confidential/`
@@ -404,7 +404,7 @@ When asking web search permission, the prompt includes:
     | Owner | ... |
     [key facts table + narrative + products/services]
     ```
-- [ ] **`agents/dd-synthesizer.md`** — Cross-agent synthesis
+- [x] **`agents/dd-synthesizer.md`** — Cross-agent synthesis
   - Model: **opus** (complex reasoning across 4+ agent outputs)
   - Tools: `["Read", "Write", "Grep", "Glob"]`
   - Reads all files in `_dd-working/` directory
@@ -412,7 +412,7 @@ When asking web search permission, the prompt includes:
   - Assembles complete `due-diligence.md` from agent sections + its own synthesis
   - Structures DD questions by category: Financial/Tax, Real Estate, Operations, Market/Customer, Legal/Compliance
   - Generates bear/conservative/base/bull scenario table
-- [ ] **`skills/notes/SKILL.md`** — Notes/DD refresh orchestrator
+- [x] **`skills/notes/SKILL.md`** — Notes/DD refresh orchestrator
   - `allowed-tools: Read, Write, Edit, Grep, Glob`
   - No `context: fork` — runs inline
   - Accept notes via AskUserQuestion (multi-line free text)
@@ -420,7 +420,7 @@ When asking web search permission, the prompt includes:
   - Launch `notes-updater` agent with notes + existing DD
   - Agent identifies affected sections and performs surgical updates
   - Append revision entry to changelog at bottom of DD document
-- [ ] **`agents/notes-updater.md`** — Surgical DD updater
+- [x] **`agents/notes-updater.md`** — Surgical DD updater
   - Model: sonnet
   - Tools: `["Read", "Write", "Edit", "Grep", "Glob"]`
   - Single-agent architecture for precision
