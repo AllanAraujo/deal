@@ -1,7 +1,7 @@
 ---
 title: "feat: Deal Acquisition Due Diligence Plugin"
 type: feat
-status: active
+status: completed
 date: 2026-03-23
 ---
 
@@ -572,19 +572,19 @@ Pass/Fail: Purchase price within range ($X-$Y range, $Z asking)
 
 **Tasks and deliverables:**
 
-- [ ] **Onboarding skill** — A root-level `skills/help/SKILL.md` (or similar) that shows:
+- [x] **Onboarding skill** — A root-level `skills/help/SKILL.md` (or similar) that shows:
   - Brief description of each command
   - Recommended workflow order: sde → dd → notes → calc (box and listing at any time)
   - Quick-start: "Drop financial documents into a deal folder, then run `/deal:sde`"
-- [ ] **`README.md`** — Plugin documentation for marketplace
+- [x] **`README.md`** — Plugin documentation for marketplace
   - Installation instructions
   - Command reference with examples
   - Workflow walkthrough
   - Privacy/confidentiality notes (web search disclosure, .gitignore explanation, NDA reminder)
-- [ ] **Plugin validation** — `claude plugin validate .` passes
+- [x] **Plugin validation** — `claude plugin validate .` passes
 - [ ] **Marketplace submission** — Submit via claude.ai/settings/plugins/submit
-- [ ] **`CHANGELOG.md`** — Initial release notes
-- [ ] **`LICENSE`** — Choose and add license
+- [x] **`CHANGELOG.md`** — Initial release notes
+- [x] **`LICENSE`** — MIT license
 
 **Success criteria:**
 - [ ] New user can go from plugin install to first SDE calculation and DD document without consulting documentation
