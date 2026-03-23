@@ -1,0 +1,25 @@
+# Development reference materials (not part of the distributed plugin)
+templates/
+
+# Financial source documents (sensitive)
+**/financials/
+
+# Broker documents (NDA-protected)
+**/confidential/
+**/cim/
+
+# Plugin working files
+**/_dd-working/
+
+# Plugin output files (contain confidential financial analysis)
+**/due-diligence.md
+**/sde-calculator.md
+**/deal-calculator.md
+**/listing-review-*.md
+**/deal-box.md
+
+# OS files
+.DS_Store
+
+# Claude Code local settings
+.claude/settings.local.json

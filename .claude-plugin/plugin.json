@@ -1,0 +1,15 @@
+{
+  "name": "deal",
+  "version": "0.1.0",
+  "description": "Due diligence toolkit for business acquirers. Analyze listings, calculate SDE, run multi-agent DD, and structure deals.",
+  "author": {
+    "name": "Allan Araujo"
+  },
+  "keywords": [
+    "acquisition",
+    "due-diligence",
+    "sde",
+    "business-buying",
+    "deal-analysis"
+  ]
+}
