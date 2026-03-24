@@ -2,7 +2,7 @@
 
 ## What This Is
 
-A Claude Code plugin (`/deal` namespace) for business acquisition due diligence. 6 skills, 7 agents, 1 domain knowledge skill.
+A Claude Code plugin (`/deal` namespace) for business acquisition due diligence. 7 user-invocable skills + 1 domain knowledge skill + 7 agents.
 
 ## Architecture
 

@@ -39,6 +39,7 @@ Check if `.gitignore` exists at the project root (traverse upward to find the ro
 
 # Plugin output files (contain confidential financial analysis)
 **/due-diligence.md
+**/due-diligence-*.md
 **/sde-calculator.md
 **/deal-calculator.md
 **/listing-review-*.md

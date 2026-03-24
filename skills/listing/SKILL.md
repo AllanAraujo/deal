@@ -74,6 +74,8 @@ Options:
 
 ## Step 7: Launch Agents
 
+First, create the working directory: `mkdir -p _dd-working/`
+
 **Always launch `listing-reviewer`:**
 ```
 Launch agent "listing-reviewer" with prompt:
@@ -101,6 +103,8 @@ DO NOT search for any financial information. Return your findings following your
 ```
 
 **CRITICAL:** Market researcher receives ONLY name, industry, location. No financial data.
+
+**After market-researcher completes:** Since this agent has no Write tool, it returns results inline. Capture its output and write it to `[deal-folder]/market-research.md` yourself so it can be referenced in the listing review output.
 
 ## Step 8: Analyze and Compare
 

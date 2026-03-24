@@ -7,7 +7,7 @@ description: >
   produce a complete due-diligence.md document. Use when you have financial
   documents, broker materials, or listing content and want a full DD report.
 argument-hint: "[deal-folder-name]"
-allowed-tools: Read, Write, Edit, Grep, Glob, WebSearch, WebFetch
+allowed-tools: Read, Write, Grep, Glob, WebSearch, WebFetch
 ---
 
 # /deal:dd — Due Diligence Analysis
@@ -165,6 +165,8 @@ After launching, inform the user:
 ## Step 9: Collect Results
 
 As agents complete, note which ones finished successfully. If the `market-researcher` returns results inline (since it has no Write tool), write its output to `_dd-working/market-research.md` yourself.
+
+**If an agent fails or returns no output:** Inform the user which agent failed, then continue with the agents that succeeded. The synthesizer will work with whatever results are available. For example: "The market researcher agent did not return results. Proceeding with financial analysis and listing review only — Section 2 (Market Analysis) will be omitted from the DD report."
 
 ## Step 10: Launch Synthesizer
 

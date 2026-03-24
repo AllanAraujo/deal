@@ -86,11 +86,11 @@ Write to `_dd-working/financial-analyst.md` with this exact structure:
 
 **Defensible range: $X – $Y**
 
-### 3.8 SDE Trend Analysis
+### 3.6 SDE Trend Analysis
 
 [Year-over-year drivers of SDE changes — what caused increases/decreases?]
 
-### 3.9 Balance Sheet Analysis
+### 3.7 Balance Sheet Analysis
 
 [If balance sheet data is available:]
 
@@ -108,11 +108,11 @@ Write to `_dd-working/financial-analyst.md` with this exact structure:
 
 [If no balance sheet: "Balance sheet data not provided. This is a gap — request from broker."]
 
-### 3.10 Revenue Breakdown Detail
+### 3.8 Revenue Breakdown Detail
 
 [Granular category-by-category analysis if P&L provides detail]
 
-### 3.11 Financier Quick-Reference
+### 3.9 Financier Quick-Reference
 
 **Headline numbers:**
 
