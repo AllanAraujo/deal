@@ -38,7 +38,7 @@ Check `$ARGUMENTS`:
 ## Step 3: Extract Business Name and Context
 
 From the listing content, extract:
-- **Business name** (or a descriptive slug if unnamed — e.g., "marine-dealership-lake-lure")
+- **Business name** (or a descriptive slug if unnamed — e.g., "hardware-store-austin")
 - **Industry type**
 - **Location** (city, state)
 - **Asking price** (if mentioned)

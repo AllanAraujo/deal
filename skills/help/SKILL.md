@@ -23,13 +23,13 @@ description: >
 
 1. Create a deal folder and add financial documents:
    ```
-   mkdir lake-lure-marine/financials
+   mkdir acme-hardware/financials
    # Drop P&L files (.pdf, .xlsx, .csv) into financials/
    ```
 
 2. Run SDE calculation:
    ```
-   cd lake-lure-marine
+   cd acme-hardware
    /deal:sde
    ```
 
@@ -68,7 +68,7 @@ Commands work independently — you can start anywhere. Each command checks for 
 ```
 my-acquisitions/           # Your project root
 ├── deal-box.md            # Buyer profile (one per project)
-├── lake-lure-marine/      # One folder per deal
+├── acme-hardware/      # One folder per deal
 │   ├── financials/        # Drop P&Ls, balance sheets here
 │   ├── confidential/      # Broker documents (CIM, etc.)
 │   ├── sde-calculator.md  # Output from /deal:sde

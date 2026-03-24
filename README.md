@@ -98,7 +98,7 @@ After a broker call or site visit, add your notes and the DD document gets surgi
 ```
 my-acquisitions/
 ├── deal-box.md              # Buyer profile (project root)
-├── lake-lure-marine/        # One folder per deal
+├── acme-hardware/        # One folder per deal
 │   ├── financials/          # P&Ls, balance sheets, tax returns
 │   ├── confidential/        # Broker docs (CIM, packages)
 │   ├── sde-calculator.md    # /deal:sde output
