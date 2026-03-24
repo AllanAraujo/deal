@@ -22,5 +22,5 @@ templates/
 # OS files
 .DS_Store
 
-# Claude Code local settings
-.claude/settings.local.json
+# Claude Code local config (symlinks are for local dev only, not distributed)
+.claude/
