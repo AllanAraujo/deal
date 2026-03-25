@@ -35,6 +35,13 @@ Check `$ARGUMENTS`:
 
 **Fetch/read the listing content.** If URL, use WebFetch. If file, use Read. Store the content for agent use.
 
+**If WebFetch fails** (site blocks scraping, requires login, or returns empty/garbled content), inform the user:
+
+> "I couldn't fetch that URL directly (the site may block automated access). You can:
+> 1. **Paste the listing content** — copy the text from your browser and I'll analyze it
+> 2. **Save as a file** — save the page as HTML or text, then run `/deal:listing path/to/file`
+> 3. **Use your browser extension** — if you have the Claude Code Chrome extension, open the listing in Chrome and I can read it from there"
+
 ## Step 3: Extract Business Name and Context
 
 From the listing content, extract:
