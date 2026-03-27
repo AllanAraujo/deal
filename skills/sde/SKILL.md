@@ -7,7 +7,7 @@ description: >
   the reconciled SDE, discrepancy report, and both agents' full workings.
   Use when you have financial documents and need an SDE calculation.
 argument-hint: "[deal-folder-name]"
-allowed-tools: Read, Write, Grep, Glob
+allowed-tools: Read, Write, Grep, Glob, Bash
 ---
 
 # /deal:sde — SDE Calculator with Blind Dual-Agent Verification
@@ -36,6 +36,7 @@ Check if `.gitignore` exists at the project root (traverse upward to find the ro
 
 # Plugin working files
 **/_dd-working/
+**/_sde-data.json
 
 # Plugin output files (contain confidential financial analysis)
 **/due-diligence.md
@@ -196,36 +197,64 @@ Both agents agreed within 5% on all line items. No reconciliation needed.
 
 After writing the markdown file, generate the interactive Excel workbook.
 
-1. **Serialize reconciled SDE data to JSON.** Write a temporary `_sde-data.json` file in the deal folder containing:
-   - `business_name`: business name or deal folder name
-   - `years`: array of year strings (e.g., ["2023", "2024", "2025"])
-   - `weights`: array of weighting percentages (e.g., [20, 30, 50])
-   - `rows`: object with keys `sales`, `cogs`, `opex`, `depreciation`, `interest`, `taxes`, `owner_salary`, `owner_payroll_tax` — each an array of values per year
-   - `rows.additional_addbacks`: object mapping add-back label → array of values per year
-   - `annotations`: object mapping cell references (e.g., "B3") to objects with `source`, `status`, `note`, `ref` fields
+1. **Serialize reconciled SDE data to JSON.** Write a temporary `_sde-data.json` file in the deal folder. Use this exact structure:
 
-   Use the reconciled agent data to populate these fields. For annotations:
-   - `source`: the document name and line item cited by the agent
-   - `status`: "Direct", "Verified", "Estimated", "Missing", or "Disputed"
-   - `note`: any reconciliation note (e.g., "Agent 1: $X. Agent 2: $Y. Agreed.")
-   - `ref`: cross-reference to sde-calculator.md section (e.g., "sde-calculator.md Section 4.1")
+   ```json
+   {
+     "business_name": "Acme Hardware",
+     "years": ["2023", "2024", "2025"],
+     "weights": [20, 30, 50],
+     "rows": {
+       "sales": [727000, 796000, 785000],
+       "cogs": [-168000, -227000, -260000],
+       "opex": [-220000, -372000, -235000],
+       "depreciation": [10417, 74407, 24576],
+       "interest": [9119, 0, 0],
+       "taxes": [0, 0, 0],
+       "owner_salary": [0, 0, 0],
+       "owner_payroll_tax": [0, 0, 0],
+       "additional_addbacks": {
+         "Auto/Truck (Owner Benefit)": [5819, 4395, 6651],
+         "Health Insurance": [0, 2398, 7487]
+       }
+     },
+     "annotations": {
+       "sales": {
+         "2023": {"source": "2023 P&L", "status": "Direct", "ref": "Section 4.1"},
+         "2024": {"source": "2024 P&L", "status": "Direct", "ref": "Section 4.2"}
+       },
+       "depreciation": {
+         "2024": {"source": "2024 P&L", "status": "Direct", "note": "Agents agreed", "ref": "Section 4.2"}
+       },
+       "interest": {
+         "2024": {"source": "Not found on 2024 P&L", "status": "Missing", "ref": "Issues"}
+       }
+     }
+   }
+   ```
 
-2. **Run the fill script via Bash:**
-   ```
-   python3 ${CLAUDE_PLUGIN_ROOT}/scripts/fill-sde-xlsx.py _sde-data.json sde-calculator.xlsx ${CLAUDE_PLUGIN_ROOT}/assets/sde-template.xlsx
-   ```
+   **Important:** All arrays (`years`, `weights`, and each row value array) MUST have the same length. Annotations use semantic keys (row name + year), NOT Excel cell references — the script resolves cell positions internally.
 
-   If `${CLAUDE_PLUGIN_ROOT}` is not available (local dev), try the relative path:
-   ```
-   python3 ../../scripts/fill-sde-xlsx.py _sde-data.json sde-calculator.xlsx ../../assets/sde-template.xlsx
-   ```
+   Annotation `status` values: "Direct", "Verified", "Estimated", "Missing", "Disputed".
 
-3. **Handle errors gracefully.** If Python or openpyxl is not installed, inform the user:
+2. **Find the plugin script path.** Use Glob to locate the fill script:
+   ```
+   Glob for **/fill-sde-xlsx.py in ~/.claude/plugins/ and in the current project
+   ```
+   Use the first match found. This works for both installed plugins and local development.
+
+3. **Run the fill script via Bash:**
+   ```
+   python3 [script-path] _sde-data.json sde-calculator.xlsx [template-path]
+   ```
+   Where `[template-path]` is in the same directory as the script, at `../assets/sde-template.xlsx` relative to it.
+
+4. **Handle errors gracefully.** If Python or openpyxl is not installed, inform the user:
    > "Could not generate Excel workbook (Python 3 + openpyxl required). Install with `pip3 install openpyxl` and re-run. The markdown report was generated successfully."
 
-   Do NOT fail the entire command — the markdown output is always the primary artifact.
+   If the script fails for any other reason (malformed JSON, template not found), show the error and continue. Do NOT fail the entire command — the markdown output is always the primary artifact.
 
-4. **Clean up.** Delete `_sde-data.json` after the script completes.
+5. **Clean up.** Delete `_sde-data.json` after the script completes (whether it succeeded or failed).
 
 ## Step 8: Summary
 
