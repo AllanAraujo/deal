@@ -13,7 +13,11 @@ SDE is the standard valuation metric for owner-operated small businesses. It rep
 ### SDE Calculation Structure
 
 ```
-  Net Income (from P&L)
+  Revenue/Sales (from P&L top line)
+- Cost of Goods Sold (COGS)
+- Operating Expenses
+= Net Income (from P&L, or calculated as Revenue - COGS - OpEx)
+
 + Owner's Compensation (ONLY if expensed on the P&L — see critical note below)
 + Depreciation & Amortization
 + Interest Expense
@@ -80,7 +84,10 @@ Every SDE calculation MUST use this table format for each year analyzed:
 
 | Item | Amount | Source | Verified? |
 |------|--------|--------|-----------|
-| Net Income | $XXX,XXX | [Document name] | Direct/Estimated/Missing |
+| Revenue/Sales | $XXX,XXX | [P&L: Gross Receipts/Sales] | Direct |
+| Less: COGS | ($XXX,XXX) | [P&L: Cost of Goods Sold] | Direct |
+| Less: Operating Expenses | ($XXX,XXX) | [P&L: Total Expenses] | Direct |
+| **Net Income** | **$XXX,XXX** | [P&L bottom line or calculated] | Direct |
 | + Owner's Compensation | $X | [Explanation of why/why not] | Verified/Direct |
 | + Depreciation & Amortization | $X | [P&L line item] | Direct |
 | + Interest Expense | $X | [P&L line item] | Direct/Missing |

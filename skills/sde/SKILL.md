@@ -220,22 +220,41 @@ After writing the markdown file, generate the interactive Excel workbook.
      },
      "annotations": {
        "sales": {
-         "2023": {"source": "2023 P&L", "status": "Direct", "ref": "Section 4.1"},
-         "2024": {"source": "2024 P&L", "status": "Direct", "ref": "Section 4.2"}
+         "2023": {"source": "2023 P&L: Gross Receipts", "status": "Direct", "ref": "Section 4.1"},
+         "2024": {"source": "2024 P&L: Gross Receipts", "status": "Direct", "ref": "Section 4.2"}
+       },
+       "cogs": {
+         "2023": {"source": "2023 P&L: Cost of Goods Sold", "status": "Direct", "ref": "Section 4.1"},
+         "2024": {"source": "2024 P&L: Cost of Goods Sold", "status": "Direct", "ref": "Section 4.2"}
+       },
+       "opex": {
+         "2023": {"source": "2023 P&L: Total Expenses", "status": "Direct", "ref": "Section 4.1"}
        },
        "depreciation": {
-         "2024": {"source": "2024 P&L", "status": "Direct", "note": "Agents agreed", "ref": "Section 4.2"}
+         "2024": {"source": "2024 P&L: Depreciation", "status": "Direct", "note": "Agents agreed", "ref": "Section 4.2"}
        },
        "interest": {
          "2024": {"source": "Not found on 2024 P&L", "status": "Missing", "ref": "Issues"}
+       },
+       "Auto/Truck (Owner Benefit)": {
+         "2023": {"source": "2023 P&L: Expedition expense", "status": "Direct", "ref": "Section 4.1"},
+         "2024": {"source": "2024 P&L: Auto-Truck line", "status": "Direct", "ref": "Section 4.2"}
+       },
+       "Health Insurance": {
+         "2024": {"source": "2024 P&L: Health Insurance line", "status": "Direct", "ref": "Section 4.2"}
+       },
+       "Maintenance CapEx Reserve": {
+         "2023": {"source": "Estimated at 2% of revenue", "status": "Estimated", "ref": "Section 4.1"}
        }
      }
    }
    ```
 
-   **Important:** All arrays (`years`, `weights`, and each row value array) MUST have the same length. Annotations use semantic keys (row name + year), NOT Excel cell references — the script resolves cell positions internally.
-
-   Annotation `status` values: "Direct", "Verified", "Estimated", "Missing", "Disputed".
+   **Important:**
+   - All arrays (`years`, `weights`, and each row value array) MUST have the same length.
+   - Annotations use semantic keys (row name + year), NOT Excel cell references — the script resolves cell positions internally.
+   - **Annotate EVERY populated value cell** — standard rows (sales, cogs, opex, depreciation, interest, etc.) AND every add-back. Every number in the XLSX should have a source citation so the user can verify where it came from.
+   - Annotation `status` values: "Direct", "Verified", "Estimated", "Missing", "Disputed".
 
 2. **Find the plugin script path.** Use Glob to locate the fill script:
    ```

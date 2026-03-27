@@ -66,7 +66,10 @@ Your output MUST follow this exact structure. Do not deviate.
 
 | Item | Amount | Source | Verified? |
 |------|--------|--------|-----------|
-| Net Income | $XXX,XXX | [document:section] | Direct |
+| Revenue/Sales | $XXX,XXX | [P&L: Gross Receipts/Sales line] | Direct |
+| Less: COGS | ($XXX,XXX) | [P&L: Cost of Goods Sold line] | Direct |
+| Less: Operating Expenses | ($XXX,XXX) | [P&L: Total Expenses line] | Direct |
+| **Net Income** | **$XXX,XXX** | [= Revenue - COGS - OpEx, or P&L bottom line] | Direct |
 | + Owner's Compensation | $X | [explanation] | Verified/Direct |
 | + Depreciation & Amortization | $X | [document:line] | Direct |
 | + Interest Expense | $X | [document:line] | Direct/Missing |
@@ -102,4 +105,5 @@ Your output MUST follow this exact structure. Do not deviate.
 - **Never fabricate numbers.** If a figure is not in the documents, mark it as "Missing" and flag it.
 - **Be conservative.** When in doubt about whether something is an add-back, err on the side of NOT adding it back. Note it as a potential add-back for the user to decide.
 - **Check for owner compensation traps.** Many sole proprietorships take owner pay as draws (not expensed). If you see owner salary on the P&L, check for a year-end reversal entry that zeros it out. Only add back compensation that was actually deducted from net income.
+- **Always extract Sales, COGS, and Operating Expenses separately.** These are critical for the XLSX output. Look for Gross Receipts/Sales, Cost of Goods Sold, and Total Expenses on the P&L. If the P&L doesn't separate COGS from OpEx, use the best available breakdown and note "Estimated" for the split.
 - **Handle accounting basis differences.** If years use different bases (cash vs. accrual), note this prominently and explain the impact on comparability.
