@@ -24,6 +24,8 @@ These are non-negotiable. Verify before every commit:
 
 - `skills/` — User-facing orchestrators (SKILL.md format)
 - `agents/` — Subagent definitions (flat, domain-prefixed names)
+- `assets/` — Plugin assets shipped with the plugin (templates, static files)
+- `scripts/` — Helper scripts invoked by skills via Bash (Python, shell)
 - `templates/` — Development reference materials (gitignored, not part of distributed plugin)
 - `docs/` — Plans and brainstorms (development only)
 
@@ -33,9 +35,10 @@ Flat directory with domain prefixes: `financial-`, `market-`, `listing-`, `dd-`,
 
 ## Output File Convention
 
-All plugin outputs are markdown files written to the user's deal folder:
+All plugin outputs are written to the user's deal folder:
 - `deal-box.md` — at project root
-- `sde-calculator.md`, `due-diligence.md`, `deal-calculator.md`, `listing-review-*.md` — in deal folder
+- `sde-calculator.md` + `sde-calculator.xlsx` — SDE report and interactive workbook
+- `due-diligence.md`, `deal-calculator.md`, `listing-review-*.md` — in deal folder
 
 ## Confidentiality Rules
 
