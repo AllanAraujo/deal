@@ -41,6 +41,7 @@ Check if `.gitignore` exists at the project root (traverse upward to find the ro
 **/due-diligence.md
 **/due-diligence-*.md
 **/sde-calculator.md
+**/sde-calculator.xlsx
 **/deal-calculator.md
 **/listing-review-*.md
 **/deal-box.md
@@ -191,14 +192,55 @@ Both agents agreed within 5% on all line items. No reconciliation needed.
 [Combined list of issues flagged by both agents, deduplicated]
 ```
 
+## Step 7b: Generate sde-calculator.xlsx
+
+After writing the markdown file, generate the interactive Excel workbook.
+
+1. **Serialize reconciled SDE data to JSON.** Write a temporary `_sde-data.json` file in the deal folder containing:
+   - `business_name`: business name or deal folder name
+   - `years`: array of year strings (e.g., ["2023", "2024", "2025"])
+   - `weights`: array of weighting percentages (e.g., [20, 30, 50])
+   - `rows`: object with keys `sales`, `cogs`, `opex`, `depreciation`, `interest`, `taxes`, `owner_salary`, `owner_payroll_tax` — each an array of values per year
+   - `rows.additional_addbacks`: object mapping add-back label → array of values per year
+   - `annotations`: object mapping cell references (e.g., "B3") to objects with `source`, `status`, `note`, `ref` fields
+
+   Use the reconciled agent data to populate these fields. For annotations:
+   - `source`: the document name and line item cited by the agent
+   - `status`: "Direct", "Verified", "Estimated", "Missing", or "Disputed"
+   - `note`: any reconciliation note (e.g., "Agent 1: $X. Agent 2: $Y. Agreed.")
+   - `ref`: cross-reference to sde-calculator.md section (e.g., "sde-calculator.md Section 4.1")
+
+2. **Run the fill script via Bash:**
+   ```
+   python3 ${CLAUDE_PLUGIN_ROOT}/scripts/fill-sde-xlsx.py _sde-data.json sde-calculator.xlsx ${CLAUDE_PLUGIN_ROOT}/assets/sde-template.xlsx
+   ```
+
+   If `${CLAUDE_PLUGIN_ROOT}` is not available (local dev), try the relative path:
+   ```
+   python3 ../../scripts/fill-sde-xlsx.py _sde-data.json sde-calculator.xlsx ../../assets/sde-template.xlsx
+   ```
+
+3. **Handle errors gracefully.** If Python or openpyxl is not installed, inform the user:
+   > "Could not generate Excel workbook (Python 3 + openpyxl required). Install with `pip3 install openpyxl` and re-run. The markdown report was generated successfully."
+
+   Do NOT fail the entire command — the markdown output is always the primary artifact.
+
+4. **Clean up.** Delete `_sde-data.json` after the script completes.
+
 ## Step 8: Summary
 
-After writing the file, present a brief summary:
+After writing both files, present a brief summary:
 
-> "SDE calculation complete. Results written to `sde-calculator.md`."
+> "SDE calculation complete."
+>
+> **Files generated:**
+> - `sde-calculator.md` — Full report with dual-agent verification
+> - `sde-calculator.xlsx` — Interactive workbook (open in Excel to adjust values)
 >
 > **Weighted Average SDE: $XXX,XXX**
 > **Verification: [Agreed / Reconciled with N discrepancies]**
 > **Issues flagged: [N items for broker follow-up]**
+>
+> "The Excel workbook has cell comments with source citations and verification status. Adjust any values and the formulas will recalculate automatically."
 >
 > "Next steps: Run `/deal:dd` for full due diligence analysis, or `/deal:calc` to model the deal financials."
