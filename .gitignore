@@ -10,6 +10,7 @@ templates/
 
 # Plugin working files
 **/_dd-working/
+**/_sde-data.json
 
 # Plugin output files (contain confidential financial analysis)
 **/due-diligence.md
